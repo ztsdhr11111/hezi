@@ -61,11 +61,11 @@ class Hezi(object):
         return quche
 
     def get_county(self):
-        county = self.browser.find_element_by_xpath('//div[@class="world"]/a[@title="Canada"]')
+        county = self.wait.until(EC.element_to_be_clickable((By.XPATH, '//div[@class="world"]/a[@title="Canada"]')))
         return county
 
     def get_city(self):
-        city = self.browser.find_element_by_xpath('//a[@title="Edmonton"]')
+        city = self.wait.until(EC.element_to_be_clickable((By.XPATH, '//a[@title="Edmonton"]')))
         return city
 
     def get_position(self):
@@ -77,15 +77,15 @@ class Hezi(object):
         return search
 
     def get_car(self):
-        car = self.browser.find_element_by_xpath('//div[contains(@class,"list-all-model")][1]')
-        return car.click()
+        car = self.wait.until(EC.element_to_be_clickable((By.XPATH,'//div[contains(@class,"list-all-model")][1]')))
+        return car
 
     def more(self):
         more_btn = self.browser.find_element_by_xpath('//a[@class="more"][1]')
         return more_btn
 
     def get_order_btn(self):
-        order_btn = self.wait.until(EC.element_to_be_clickable((By.XPATH, '//a[contains(@class, "btn-reservation"')))
+        order_btn = self.wait.until(EC.element_to_be_clickable((By.XPATH, '//button[contains(@class, "btn-reservation"')))
         return order_btn
 
     def switch_second_window(self):
@@ -122,9 +122,10 @@ class Hezi(object):
         time.sleep(2)
         self.choose_city()
         self.choose_car()
-        order_btn = self.get_order_btn()
-        order_btn.click()
-        time.sleep(3)
+        print(self.browser.page_source)
+        # order_btn = self.get_order_btn()
+        # order_btn.click()
+        # time.sleep(3)
 
 
 if __name__ == '__main__':
